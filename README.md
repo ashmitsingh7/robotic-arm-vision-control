@@ -1,75 +1,72 @@
-# 🤖 AI Vision-Based Robotic Arm Control
+# Real-Time Robotic Arm Control using MediaPipe Hand Tracking
 
-> A real-time computer vision system that enables intuitive robotic arm control using hand gesture tracking and embedded motor control.
-
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)
-![MediaPipe](https://img.shields.io/badge/MediaPipe-Hand%20Tracking-orange)
-![Arduino](https://img.shields.io/badge/Arduino-Servo%20Control-teal)
+A computer vision-based robotic arm control system that enables real-time hand gesture control using **MediaPipe**, **OpenCV**, and an **ESP32** over Wi-Fi. The project demonstrates an intuitive human-robot interaction pipeline by translating hand movements captured from a webcam into robotic arm motions.
 
 ---
 
 ## Overview
 
-This project implements a **vision-based robotic arm control system** where a user's hand movements are tracked in real time using a webcam and translated into robotic arm motions.
+This project combines computer vision and embedded systems to create a wireless robotic arm control interface.
 
-The system combines modern computer vision algorithms with embedded hardware to create a natural Human-Robot Interaction (HRI) interface without requiring traditional joysticks or controllers.
+Using a standard webcam, the system detects hand landmarks with MediaPipe and maps them to robotic arm movements. Motion commands are transmitted wirelessly to an ESP32, which controls the actuators in real time.
 
-The project was developed as a robotics learning platform covering:
+### Key Features
 
-- Computer Vision
-- Human Pose Estimation
-- Embedded Systems
-- Real-Time Serial Communication
-- Robotic Manipulation
-
----
-
-## Features
-
-- ✋ Real-time hand landmark detection
-- 🎥 Webcam-based control
-- ⚡ Low-latency gesture recognition
-- 🤖 Multi-DOF robotic arm control
-- 🔌 Arduino-based embedded controller
-- 📡 Serial communication between PC and robot
-- 🎯 Intuitive human-robot interaction
+- Real-time hand landmark detection
+- Wireless communication with ESP32 over Wi-Fi
+- Low-latency robotic arm control
+- Computer vision-based human-robot interaction
+- Modular software architecture
+- OpenCV visualization and debugging
 
 ---
 
 ## System Architecture
 
 ```
-             Webcam
-                │
-                ▼
-        OpenCV Video Stream
-                │
-                ▼
-     MediaPipe Hand Tracking
-                │
-                ▼
-     Gesture Interpretation
-                │
-                ▼
-     Joint Angle Generation
-                │
-                ▼
-        Serial Communication
-                │
-                ▼
-            Arduino
-                │
-                ▼
-         Servo Motor Control
-                │
-                ▼
-          Robotic Arm Motion
+Webcam
+   │
+   ▼
+OpenCV Video Stream
+   │
+   ▼
+MediaPipe Hand Tracking
+   │
+   ▼
+Gesture & Landmark Processing
+   │
+   ▼
+Motion Mapping
+   │
+   ▼
+Wi-Fi Communication
+   │
+   ▼
+ESP32 Controller
+   │
+   ▼
+Servo Motors
+   │
+   ▼
+Robotic Arm
 ```
 
 ---
 
-## Tech Stack
+## Repository Contents
+
+| File | Description |
+|------|-------------|
+| `vision_control.py` | Main computer vision and control program |
+| `esp_wifi.ino` | ESP32 firmware for wireless communication |
+| `babyarm_nano.ino` | Arduino Nano firmware |
+| `robotic_arm_full_architecture.svg` | System architecture diagram |
+| `3d_RoboticArm.f3d` | Fusion 360 CAD model |
+| `MPMC_Report_Final.pdf` | Project documentation |
+
+---
+
+## Technologies Used
 
 ### Software
 
@@ -77,29 +74,14 @@ The project was developed as a robotics learning platform covering:
 - OpenCV
 - MediaPipe
 - NumPy
-- PySerial
 
 ### Hardware
 
-- Arduino
+- ESP32
+- Arduino Nano
 - Servo Motors
 - USB Webcam
-- Robotic Arm
-- Power Supply
-
----
-
-## Project Structure
-
-```
-robotic-arm-vision-control/
-
-│── Arduino/
-│── Python/
-│── assets/
-│── requirements.txt
-│── README.md
-```
+- Custom Robotic Arm
 
 ---
 
@@ -109,82 +91,60 @@ Clone the repository
 
 ```bash
 git clone https://github.com/ashmitsingh7/robotic-arm-vision-control.git
-
 cd robotic-arm-vision-control
 ```
 
-Install dependencies
+Install the required Python packages.
 
 ```bash
-pip install -r requirements.txt
+pip install opencv-python mediapipe numpy
 ```
 
-Upload the Arduino sketch.
+Upload the appropriate firmware to the ESP32 and Arduino Nano before running the Python application.
 
-Run the Python application.
+Start the vision controller.
 
 ```bash
-python main.py
+python src/vision_control.py
 ```
 
 ---
 
-## How It Works
+## Working Principle
 
-1. Webcam captures the user's hand.
-2. MediaPipe detects 21 hand landmarks.
-3. Landmark positions are converted into joint angles.
-4. Commands are transmitted over serial.
-5. Arduino receives the commands.
-6. Servo motors move the robotic arm accordingly.
+1. Capture live video using a webcam.
+2. Detect hand landmarks with MediaPipe.
+3. Convert landmark positions into robotic arm commands.
+4. Send commands over Wi-Fi to the ESP32.
+5. Control the robotic arm in real time.
 
 ---
 
 ## Applications
 
 - Human-Robot Interaction
+- Gesture-Based Robot Control
 - Educational Robotics
-- Gesture-Based Interfaces
-- Robotics Research
-- Assistive Robotics
-- Teleoperation
+- Embedded Systems
+- Computer Vision
+- Robotic Manipulation
 
 ---
 
 ## Future Improvements
 
 - Inverse Kinematics
-- ROS2 Integration
-- MoveIt Motion Planning
-- Object Detection
+- ROS 2 Integration
+- Object Detection and Grasping
 - Depth Camera Support
-- Closed-Loop Feedback Control
-- PID Servo Control
-- Reinforcement Learning for Motion Planning
+- Closed-Loop Position Control
+- Multi-Hand Gesture Recognition
 
 ---
 
-## Results
+## License
 
-- Real-time gesture tracking
-- Smooth robotic arm movement
-- Low communication latency
-- Stable serial interface
-- Accurate hand landmark detection
-
----
-
-## Learning Outcomes
-
-Through this project, I gained practical experience in:
-
-- Computer Vision
-- Robotics
-- Embedded Programming
-- Human-Computer Interaction
-- Real-Time Systems
-- Serial Communication
-- Control Systems
+This project is licensed under the MIT License.
 
 ---
 
@@ -194,14 +154,6 @@ Through this project, I gained practical experience in:
 
 B.Tech Electronics Engineering (VLSI Design & Technology)
 
-Robotics | Embedded Systems | Computer Vision | Intelligent Automation
+Interested in Robotics, Computer Vision, Embedded Systems, and Intelligent Automation.
 
 GitHub: https://github.com/ashmitsingh7
-
-LinkedIn: www.linkedin.com/in/ashmitsingh7
-
----
-
-## License
-
-This project is released under the MIT License.
