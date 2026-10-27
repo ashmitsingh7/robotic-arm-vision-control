@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include <WiFi.h>
 
-const char* ssid = "Anandita's iPhone";
-const char* password = "Anandita";
+// WiFi Configuration - REPLACE WITH YOUR CREDENTIALS
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+// Network Configuration
+const IPAddress server_ip(192, 168, 1, 100); // REPLACE WITH YOUR SERVER IP
 
 WiFiServer server(1234);
 

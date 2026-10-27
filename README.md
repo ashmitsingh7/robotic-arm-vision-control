@@ -58,7 +58,7 @@ Robotic Arm
 | File | Description |
 |------|-------------|
 | `vision_control.py` | Main computer vision and control program |
-| `esp_wifi.ino` | ESP32 firmware for wireless communication |
+| `esp_wifi.ino` | ESP32 firmware for wireless communication (set WiFi credentials before flashing) |
 | `babyarm_nano.ino` | Arduino Nano firmware |
 | `robotic_arm_full_architecture.svg` | System architecture diagram |
 | `3d_RoboticArm.f3d` | Fusion 360 CAD model |
@@ -99,6 +99,15 @@ Install the required Python packages.
 ```bash
 pip install opencv-python mediapipe numpy
 ```
+
+## Configuration
+
+Before flashing the ESP32 firmware, edit `src/esp_wifi.ino` and set:
+- `ssid` — your WiFi network name (replace `YOUR_WIFI_SSID`)
+- `password` — your WiFi password (replace `YOUR_WIFI_PASSWORD`)
+- `server_ip` — the IP address of the machine running `vision_control.py` (replace `192, 168, 1, 100`)
+
+Then upload `src/esp_wifi.ino` to the ESP32 and `src/babyarm_nano.ino` to the Arduino Nano.
 
 Upload the appropriate firmware to the ESP32 and Arduino Nano before running the Python application.
 
